@@ -1,19 +1,13 @@
 import json
 import sqlite3
 
-con = sqlite3.connect("instance/todo.db")
+con = sqlite3.connect("instance/CrimeAnalysis.db")
 cur = con.cursor()
 cur.execute('Create Table if not exists user (city Text, street Text, number Text, id Text, email Text, username Text, password Text, firstname Text, lastname Text, phone Text)')
 cur.execute('Truncate Table user')
 
 
-records2 = [('kilcoole','new road','7682','1','john@gmail.com','samit','samit','samit','shah','1-570-236-7033'),
-('kilcoole','Lovers Ln','7267','2','morrison@gmail.com','ujval','ujji','ujval','shah','1-570-236-7033'),
-('Cullman','Frances Ct','86','3','kevin@gmail.com','saad','saadshah','saad','shah','1-567-094-1345'),
-('San Antonio','Hunters Creek Dr','6454','4','don@gmail.com','dhruv','dhruvshah','dhruv','shah','1-765-789-6734')
-]
-
-cur.executemany('INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?,?);',records2);
+cur.executemany('INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?,?);')
 
 
 con.commit() 

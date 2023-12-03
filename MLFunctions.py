@@ -2,26 +2,19 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-# from mlxtend.frequent_patterns import apriori
-# from mlxtend.frequent_patterns import association_rules
+from SparQL import run_sparql_query
 
+sparql_results = run_sparql_query()
 
-    #Load the file into pandas
-
-df2= pd.read_excel("Dataset_SER531.xlsx")
-    #check first 5 rows
+df_sparql= pd.DataFrame(sparql_results)
 
 
 
-    #Drop all rows with a null value
-
-df2.dropna(inplace=True)
-
-
-top15 = df2["AREA NAME"].value_counts().head(10)
-low10 = df2["AREA NAME"].value_counts().tail(10)
 def getdata():
-    return(top15)
+    top10 = df_sparql.value_counts().head(10)
+    return(top10)
+    
 def getlowdata():
+    low10 = df_sparql.value_counts().tail(10)
     return(low10)
 
