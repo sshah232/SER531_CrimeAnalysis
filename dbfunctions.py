@@ -9,19 +9,19 @@ import sqlite3
 #for row in cur.execute('SELECT * FROM cart'):
 #    print(row)
 def getTotal():
-    with sqlite3.connect("instance/todo.db") as con:
+    with sqlite3.connect("instance/CrimeAnalysis.db") as con:
         cur = con.cursor()
         for row in cur.execute('SELECT SUM(total) FROM cart'):
             return(row[0])
         
 def getCount():
-    with sqlite3.connect("instance/todo.db") as con:
+    with sqlite3.connect("instance/CrimeAnalysis.db") as con:
         cur = con.cursor()
         for row in cur.execute('SELECT count(1) FROM cart'):
             return(row[0])
 
 def validateuser(name,password):
-    with sqlite3.connect("instance/todo.db") as con:
+    with sqlite3.connect("instance/CrimeAnalysis.db") as con:
         cur = con.cursor()
         query='SELECT password FROM user where username ="'+name+'"'
         for row in cur.execute(query):
@@ -34,7 +34,7 @@ def validateuser(name,password):
         return False
     
 def getprd_info():
-    with sqlite3.connect("instance/todo.db") as con:
+    with sqlite3.connect("instance/CrimeAnalysis.db") as con:
         cur = con.cursor()
         prd_list=[]
         #prd_head=['prod_img','prod_name','prod_price']
@@ -47,7 +47,7 @@ def getprd_info():
         return(prd_list)
         
 def addproduct(sno):
-    with sqlite3.connect("instance/todo.db") as con:
+    with sqlite3.connect("instance/CrimeAnalysis.db") as con:
         cur = con.cursor()
         cur.execute('insert into Cart(image,name,price,quantity,total) SELECT prod_img , prod_name, prod_price,1,prod_price FROM productsinfo where sr_no='+str(sno))
         print('====================================================inserted into cart')

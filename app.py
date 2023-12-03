@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sqlite3
 import dbfunctions
-import moreproducts
 import MLFunctions
 from flask_session import Session
 import io
