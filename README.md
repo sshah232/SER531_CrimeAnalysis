@@ -3,9 +3,9 @@
 This project consists of making an ontology for the Crime data, creating triples using Cellfie, hosting the triples onto a cloud service(AWS in our case), querying the ontology using SPARQL and finally using this data to make graphs and bar charts for visualizing the crime happening in the nearby area and making the public aware and safe from the incidents.
 
 Project Members:
-Yugma Patel
-Shubham Shah
-Samit Shah
+Yugma Patel, 
+Shubham Shah, 
+Samit Shah, 
 Swathi Revanasiddappa 
 
 # AWS Instance:
