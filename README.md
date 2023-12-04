@@ -31,3 +31,5 @@ Steps for running the AWS instance.
 3) This will start the server on 8000 port. The URL will be similar to http://127.0.0.1:8000
 
 The web app might not show data when you run the app.py as the AWS instance might not be running at that time. For this you can contact ypatel42@asu.edu via Email or Slack so that he can start the instance and then the output will be seen perfectly. 
+
+Also, the changes recommended by Prof. Bansal were not made because, in our opinion, making distinct and different classes for just Gender and Descent were not justified and felt redundant for the use case we were going for. Hence, the gender and descent were kept in the data properties itself.  
