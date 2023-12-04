@@ -2,7 +2,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import pandas as pd
 
 def run_sparql_query():
-    sparql = SPARQLWrapper("http://ec2-18-216-173-36.us-east-2.compute.amazonaws.com:3030/#/dataset/New_DS/")
+    sparql = SPARQLWrapper("http://ec2-18-216-173-36.us-east-2.compute.amazonaws.com:3030/New_DS/query")
     sparql.setReturnFormat(JSON)
 
     sparql.setQuery("""
@@ -21,3 +21,5 @@ def run_sparql_query():
     except Exception as e:
         print(e)
         return None
+    
+print(run_sparql_query())

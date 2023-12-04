@@ -4,6 +4,7 @@ from datetime import datetime
 import sqlite3
 import dbfunctions
 import MLFunctions
+import graph
 from flask_session import Session
 import io
 from flask import Response
@@ -53,12 +54,12 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(120), nullable=False)
 
 
-@app.route('/dashboard')
+@app.route('/chart')
 def bar_with_plotly():
-    low10=MLFunctions.getlowdata()
-    top10=MLFunctions.getdata()
-    fig = px.bar(top10, x=top10.index,  barmode='group')
-    fig2 = px.bar(low10, x=low10.index,  barmode='group')
+    low10=graph.getlowdata()
+    top10=graph.getdata()
+    fig = px.bar(top10, x=top10.index, y=top10.values,  barmode='group')
+    fig2 = px.bar(low10, x=low10.index, y=low10.values,  barmode='group')
     # Create graphJSON
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     graphJSON2 = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
@@ -89,7 +90,7 @@ def hello_world():
     if current_user.is_authenticated:
         msg = 'Welcome back, ' + current_user.username
     else:
-        msg = 'You are not logged in'
+        msg = ''
     return render_template('homepage.html', msg=msg)
 
 @app.route('/login', methods=['POST'])

@@ -11,3 +11,12 @@ Steps for running the AWS instance.
     cd apache-jena-fuseki-4.10.0
     ./fuseki-server
 3) This will start the server on 3030 port. The URL will be similar to http://ec2-18-216-173-36.us-east-2.compute.amazonaws.com:3030/#/. (replace the DNS according to the instance). This has New_DS which contains the triples of our data. We have also attached the owl file with the instances/individuals loaded in it. Now, this url will be used to parse the SPARQL queries, get the triples and show the data. 
+
+
+# How to run the webapp
+
+1) Install all the necessary libraries so that you do not get any import errors!
+2) Navigate to "app.py" file and run the file using the command:
+    python app.py
+3) This will start the server on 8000 port. The URL will be similar to http://127.0.0.1:8000
+
