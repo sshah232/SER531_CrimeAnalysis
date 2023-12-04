@@ -1,7 +1,9 @@
 # SER531_CrimeAnalysis
 
-AWS Instance:
-The instance is made on AWS which consists of AWS Linux-2 AMI, t2.micro with SSH, HTTP and HTTPS services enabled. This instance has a public key which is stored in the AWS folder named as new_dev.pem. This instance has Jena Fuseki and Java already installed in it. 
+This project consists of making an ontology for the Crime data, creating triples using Cellfie, hosting the triples onto a cloud service(AWS in our case), querying the ontology using SPARQL and finally using this data to make graphs and bar charts for visualizing the crime happening in the nearby area and making the public aware and safe from the incidents.
+
+# AWS Instance:
+The instance is made on AWS which consists of AWS Linux-2 AMI, t2.micro with SSH, HTTP and HTTPS services enabled. This instance has a public key which is stored in the AWS folder named as new_dev.pem. This instance has Jena Fuseki and Java already installed in it. We are currently using the Free Tier of AWS which kills the process after some amount of time and thus we cannot publish the triples forever and we had to host it again.
 
 Steps for running the AWS instance. 
 1) Open the terminal and write the command: ssh -i new_dev.pem ec2-user@ec2-18-216-173-36.us-east-2.compute.amazonaws.com
