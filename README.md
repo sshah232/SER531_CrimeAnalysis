@@ -5,12 +5,14 @@ The instance is made on AWS which consists of AWS Linux-2 AMI, t2.micro with SSH
 
 Steps for running the AWS instance. 
 1) Open the terminal and write the command: ssh -i new_dev.pem ec2-user@ec2-18-216-173-36.us-east-2.compute.amazonaws.com
-   The instance IP might be different when you will try to run it as the Free Tier of AWS doesn't keep the instance running for ever and kills it after some time. So, once I restart the instance, a new IP DNS would be assigned which can be replaced in place of "ec2-18-216-173-36.us-east-2.compute.amazonaws.com". Also, make sure appropriate permissions are given to the directory in which the public key is present. Run the cmd as administrator or write chmod 400 <<Directory_NAME>>. 
+   The instance IP might be different when you will try to run it as the Free Tier of AWS doesn't keep the instance running for ever and kills it after some time. So, once I restart the instance, a new IP DNS would be assigned which can be replaced in place of "ec2-18-216-173-36.us-east-2.compute.amazonaws.com". Also, make sure appropriate permissions are given to the directory in which the public key is present. Run the cmd as administrator or write chmod 400 <<Directory_NAME>>.
+   
 2) Once the Linux session is started, write the following commands:
     export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
     cd apache-jena-fuseki-4.10.0
     ./fuseki-server
-3) This will start the server on 3030 port. The URL will be similar to http://ec2-18-216-173-36.us-east-2.compute.amazonaws.com:3030/#/. (replace the DNS according to the instance). This has New_DS which contains the triples of our data. We have also attached the owl file with the instances/individuals loaded in it. Now, this url will be used to parse the SPARQL queries, get the triples and show the data. 
+   
+3) This will start the server on 3030 port. The URL will be similar to http://ec2-18-216-173-36.us-east-2.compute.amazonaws.com:3030/#/. (replace the DNS according to the instance). This has New_DS which contains the triples of our data. We have also attached the .owl file(in the Ontologies folder) with the instances/individuals loaded in it. Now, this url will be used to parse the SPARQL queries, get the triples and show the data. 
 
 
 # How to run the webapp
@@ -20,3 +22,4 @@ Steps for running the AWS instance.
     python app.py
 3) This will start the server on 8000 port. The URL will be similar to http://127.0.0.1:8000
 
+The web app might not show data when you run the app.py as the AWS instance might not be running at that time. For this you can contact ypatel42@asu.edu via Email or Slack so that he can start the instance and then the output will be seen perfectly. 
