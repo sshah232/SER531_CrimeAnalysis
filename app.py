@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sqlite3
-import dbfunctions
-import MLFunctions
+import MLFunctions as ml
 import graph
 from flask_session import Session
 import io
@@ -17,7 +16,7 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
-from SparQL import run_sparql_query
+from SparQL import run_sparql_query2
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash
 from flask_login import LoginManager
@@ -56,34 +55,35 @@ class User(db.Model, UserMixin):
 
 @app.route('/chart')
 def bar_with_plotly():
-    low10=graph.getlowdata()
-    top10=graph.getdata()
-    fig = px.bar(top10, x=top10.index, y=top10.values,  barmode='group')
-    fig2 = px.bar(low10, x=low10.index, y=low10.values,  barmode='group')
-    # Create graphJSON
+    df_sparql = run_sparql_query2()
+
+    # Print the DataFrame to understand its structure
+    print(df_sparql)
+
+    # Plot the DataFrame using Plotly
+    fig = px.bar(df_sparql, x='Gender', y='Description', title='Crime Count by Gender and Description')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    graphJSON2 = json.dumps(fig2, cls=plotly.utils.PlotlyJSONEncoder)
 
-    #freq1=MLFunctions.frequentproducts()
-    # assoc1=MLFunctions.getassoc_rules()
-    #freq=list(freq1.itemsets)
-    # assoc=set(assoc1.consequents)
-    #print(freq)
-    # print(assoc)
-    return render_template('dashboard.html', graphJSON=graphJSON,graphJSON2=graphJSON2,top10=top10,low10=low10#freq=freq,assoc=assoc
-                           )
+    return render_template('dashboard.html', graphJSON=graphJSON)
  
-@app.route('/dashboard')
-def show_sparql_results():
-    # Call the function to get results
-    sparql_results = run_sparql_query()
+# @app.route('/chart')
+# def show_sparql_results():
+#     # Call the function to get results
+#     sparql_results = run_sparql_query1()
+#     print(sparql_results)
+#     # Pass the results to the template or use as needed
+#     return render_template('dashboard.html', sparql_results=sparql_results)
 
-    if sparql_results:
-        for result in sparql_results:
-            print(result)
+@app.route('/chart')
+def index():
+    # Run your SPARQL query and get the DataFrame
+    df = run_sparql_query2()
 
-    # Pass the results to the template or use as needed
-    return render_template('dashboard.html', sparql_results=sparql_results)
+    # Convert DataFrame to HTML
+    html_table = df.to_html(classes='table table-striped table-bordered')
+    print("Test")
+    # Pass the HTML table to the template
+    return render_template('dashboard.html', html_table=html_table)
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
@@ -122,5 +122,6 @@ if __name__ == "__main__":
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
-
+    
+    # show_sparql_results()
     app.run(debug=True, port=8000)

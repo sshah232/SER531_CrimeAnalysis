@@ -25,31 +25,7 @@
 
   <body class="index layout1">
   	
-	<script>
-		// Check if the Geolocation API is supported by the browser
-		if ("geolocation" in navigator) {
-			// Use the Geolocation API to get the user's current position
-			navigator.geolocation.getCurrentPosition(
-				function (position) {
-					// Get latitude and longitude from the position object
-					const latitude = position.coords.latitude;
-					const longitude = position.coords.longitude;
-	
-					// Display the user's location
-					console.log("Latitude: " + latitude);
-					console.log("Longitude: " + longitude);
-					console.log("Arizona");
-				},
-				function (error) {
-					// Handle errors, if any
-					console.error("Error getting location:", error.message);
-				}
-			);
-		} else {
-			// Geolocation is not supported
-			console.error("Geolocation is not supported by this browser.");
-		}
-	</script>
+	<!-- Add this script in the <head> section of your homepage.html -->
 	
 	<header class="header-area header-sticky text-center header-default">
 	<div class="header-main-sticky">
