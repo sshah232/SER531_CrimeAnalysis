@@ -6,7 +6,7 @@ Project Members:
 Yugma Patel, 
 Shubham Shah, 
 Samit Shah, 
-Swathi Revanasiddappa 
+Swathi Anaji Revanasiddappa 
 
 # AWS Instance:
 The instance is made on AWS which consists of AWS Linux-2 AMI, t2.micro with SSH, HTTP and HTTPS services enabled. This instance has a public key which is stored in the AWS folder named as new_dev.pem. This instance has Jena Fuseki and Java already installed in it. We are currently using the Free Tier of AWS which kills the process after some amount of time and thus we cannot publish the triples forever and we had to host it again.
